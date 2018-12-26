@@ -132,6 +132,62 @@ set(inttest..TestBase.base) 表示设置TestBase.base变量时的JPoint
 staticinitialization(test..TestBase) 表示TestBaes类的static block
 handler(NullPointerException) 表示catch到NullPointException的Jpoint
 
+#其他常用选择JoinPoint方法
+
+within(TypePattern)  TypePattern标示package或者类，可以使用通配符。  within(Test) 标示某个package或者类中的所有JPoint
+
+withincode(Constructor Signature|Method Signature) 表示某个构造函数或其他函数执行过程中涉及到的JPoint。 
+
+withinCode(* TestDerived.testMethod(..)) 表示testMethod涉及的JPoint 
+withinCode(*.Test.new(..))  表示Test构造函数涉及的JPoint
+
+cflow(pointcuts)  cflow是call flow的意思，cflow的条件是一个pointcut
+
+cflow(call TestDerived.testMethod) 表示调用TestDerived.testMethod函数时所包含的JPoint,包括testMethod的call这个JPoint本身。
+
+cflowbelow(pointcuts)  cflow是call flow的意思
+
+cflowblow(call TestDerived.testMethod) 表示调用TestDerived.testMethod函数时所包含的JPoint，不包括testMethod的call这个JPoint本身
+
+this(Type) JPoint的this对象是Type类型  obj instanceof Type
+
+this(TestMethod) 将会选中testMethod JoinPoint
+
+target(Type) JPoint的target对象是Type类型
+
+和this相对的是target。不过target一般用在call的情况。call一个函数，这个函数可能定义在其他类。比如testMethod是TestDerived类定义的。那么
+target(TestDerived)就会搜索到调用testMethod的地方。但是不包括testMethod的execution JPoint
+
+args(TypeSignature) 用来对JPoint的参数进行条件搜索
+
+args(int,..) 表示第一个参数是int,后面参数个数和类型不限的JPoint
+
+#Advice 是在执行点JoinPoint执行前后设置的代码就是advice, advice是一种hook
+
+before():testAll(){
+    System.out.println("before calling："+thisJoinPoint);
+    System.out.println("  at:"+thisJoinPoint.getSourceLocation());
+}
+
+testAll()是前面定义的pointcuts,而before()定义了在这个pointcuts选中的JPoint执行前我们要干的事情
+
+#Advice 类型
+
+before()  before advice   表示在JPoint执行之前，需要干的事情
+after()   after advice    表示JPoint自己执行完了后，需要干的事情
+after():returning  返回值类型  returning和throwing后面都可以指定具体的类型，如果不指定类型的话则匹配的时候不限定类型
+after():throwing  异常类型
+返回值类型 around()  before和around是指JPoint执行前或执行后被触发，而around就替代了原JPoint   
+around是替代了原JPoint，如果要执行原JPoint的话，需要调用proceed
+
+
+#总结
+
+JPoint  一个程序执行的关键执行点
+
+pointcuts  提供一种方法来选择目标JPoint。程序有很多JPoint,但是需要一种方法来你选择我们关注的JPoint。方法就是利用pointcuts来完成
+
+Advice   通过pointcuts选择目标JPoint后，就用advice注入我们要做的事情。 before after around
 
 
 
