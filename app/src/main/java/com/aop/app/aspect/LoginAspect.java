@@ -15,7 +15,7 @@ import org.aspectj.lang.annotation.Pointcut;
  */
 @Aspect
 public class LoginAspect {
-    @Pointcut("execution(@CheckLoginAnnotation * com.aop.app..*(..))")
+    @Pointcut("execution(@CheckLoginAnnotation * com.aop.app..*(..))&&args(activity)")
     public void checkLogin(Activity activity) {
     }
 
@@ -25,8 +25,9 @@ public class LoginAspect {
 //        return;
 //    }
 
-    @Around("checkLogin()")
-    public void check(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("checkLogin(activity)")
+    public void check(ProceedingJoinPoint joinPoint, Activity activity) throws Throwable {
+        Log.d("===>", "===>activity：" + activity);
         boolean isLogin = false;
         if (!isLogin) {
             Log.d("===>", "===>您没有登录，请先去登录");

@@ -1,5 +1,6 @@
 package com.aop.app;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_sayhello).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sayHello();
+                sayHello(MainActivity.this);
             }
         });
     }
 
     @CheckLoginAnnotation
-    public void sayHello() {
+    public void sayHello(Activity activity) {
         Log.d("===>", "===>Hello Everyone");
     }
 }
