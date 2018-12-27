@@ -16,6 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -26,6 +32,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'org.aspectj:aspectjrt:1.9.2'
+    //AndPermission权限申请
+    implementation 'com.yanzhenjie:permission:2.0.0-rc12'
 }
 
 //aspectj相关配置
@@ -37,10 +45,11 @@ final def log = project.logger
 final def variants = project.android.applicationVariants
 
 variants.all { variant ->
-    if (!variant.buildType.isDebuggable()) {
-        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
-        return
-    }
+    //这段代码在release环境下会拦截任务向下执行，导致aspect无法正常使用
+    //if (!variant.buildType.isDebuggable()) {
+    //    log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
+    //    return
+    //}
 
     JavaCompile javaCompile = variant.javaCompile
     javaCompile.doLast {

@@ -3,19 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".AuthActivity">
 
     <Button
-        android:id="@+id/btn_sayhello"
+        android:id="@+id/btn_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SayHello" />
-
-    <Button
-        android:id="@+id/btn_auth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="权限申请" />
+        android:text="单个授权" />
 
 </LinearLayout>

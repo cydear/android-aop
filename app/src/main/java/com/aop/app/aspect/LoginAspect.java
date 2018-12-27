@@ -15,7 +15,7 @@ import org.aspectj.lang.annotation.Pointcut;
  */
 @Aspect
 public class LoginAspect {
-    @Pointcut("execution(@CheckLoginAnnotation * com.aop.app..*(..))&&args(activity)")
+    @Pointcut("execution(@com.aop.app.annotation.CheckLoginAnnotation * com.aop.app..*(..))&&args(activity)")
     public void checkLogin(Activity activity) {
     }
 

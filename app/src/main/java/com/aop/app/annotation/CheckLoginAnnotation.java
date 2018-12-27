@@ -1,4 +1,4 @@
-package com.aop.app.aspect;
+package com.aop.app.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
