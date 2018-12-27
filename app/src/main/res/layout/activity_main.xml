@@ -16,6 +16,14 @@
         android:id="@+id/btn_auth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
         android:text="权限申请" />
+
+    <Button
+        android:id="@+id/btn_auth_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="Service申请权限" />
 
 </LinearLayout>

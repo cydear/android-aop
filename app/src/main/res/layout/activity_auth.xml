@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AuthActivity">
 
     <Button
@@ -10,5 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="单个授权" />
+
+    <Button
+        android:id="@+id/btn_aop_auth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="使用AOP申请权限" />
+
 
 </LinearLayout>

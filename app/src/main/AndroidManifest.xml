@@ -21,7 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".AuthActivity"></activity>
+        <activity android:name=".AuthActivity" />
+
+        <service
+            android:name=".AuthService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

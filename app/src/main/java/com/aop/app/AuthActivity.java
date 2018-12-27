@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.aop.app.annotation.AndroidPermission;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Rationale;
@@ -22,6 +23,16 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
 
         findViewById(R.id.btn_one).setOnClickListener(view -> authOne());
+
+        findViewById(R.id.btn_aop_auth).setOnClickListener(view -> readPhoneState());
+    }
+
+    @AndroidPermission(permissions = {
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.CALL_PHONE
+    })
+    private void readPhoneState() {
+        Log.d("===>", "read phone: read phone state complete");
     }
 
     private void authOne() {

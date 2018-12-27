@@ -29,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
                 startToAuthActivity();
             }
         });
+
+        findViewById(R.id.btn_auth_service).setOnClickListener(view -> {
+            startAuthService();
+        });
+    }
+
+    private void startAuthService() {
+        startService(new Intent(this, AuthService.class));
     }
 
     private void startToAuthActivity() {
